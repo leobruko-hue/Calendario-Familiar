@@ -553,10 +553,14 @@ function renderDash() {
     const pill = document.createElement('div');
     pill.className = 'day-pill'+(mismaFecha(d,HOY)?' active':'');
     pill.innerHTML = '<div class="dname">'+diasCort[d.getDay()]+'</div><div class="dnum">'+d.getDate()+'</div><div class="dots">'+cats.map(c=>'<span class="dot" style="background:var(--cat-'+c+')"></span>').join('')+'</div>';
+    pill.onclick = () => filtrarDia(d);
     strip.appendChild(pill);
   }
 
-  const sorted = eventos.filter(e=>e.fecha>=HOY||mismaFecha(e.fecha,HOY)).sort(sortEvento).slice(0,10);
+  const base = diaFiltro || HOY;
+  const sorted = diaFiltro
+    ? eventos.filter(e=>mismaFecha(e.fecha,diaFiltro)).sort(sortEvento)
+    : eventos.filter(e=>e.fecha>=HOY||mismaFecha(e.fecha,HOY)).sort(sortEvento).slice(0,10);
   const lista = document.getElementById('proximos-lista');
   if (!sorted.length) { lista.innerHTML='<div class="empty"><span class="emoji">🌱</span>Sin eventos próximos</div>'; return; }
   lista.innerHTML = sorted.map((e,i)=>
@@ -630,6 +634,28 @@ function renderTodo() {
     '<div class="todo-date">'+formatFecha(e.fecha)+'<br><span style="color:var(--text-mute)">'+(e.hora||'–')+(e.horaFin?' – '+e.horaFin:'')+'</span></div>'+
     '</div>'
   ).join('');
+}
+
+let diaFiltro = null;
+
+function filtrarDia(d) {
+  diaFiltro = mismaFecha(d, diaFiltro||new Date(0)) ? null : d;
+  document.querySelectorAll('.day-pill').forEach(p => p.classList.remove('active'));
+  if (diaFiltro) {
+    document.querySelectorAll('.day-pill').forEach(p => {
+      if (p.querySelector('.dnum').textContent == diaFiltro.getDate() &&
+          p.querySelector('.dname').textContent == diasCort[diaFiltro.getDay()])
+        p.classList.add('active');
+    });
+  } else {
+    // restaurar hoy
+    document.querySelectorAll('.day-pill').forEach(p => {
+      if (p.querySelector('.dnum').textContent == HOY.getDate() &&
+          p.querySelector('.dname').textContent == diasCort[HOY.getDay()])
+        p.classList.add('active');
+    });
+  }
+  renderDash();
 }
 
 function renderAll() { renderDash(); renderSemana(); renderMes(); renderTodo(); }
