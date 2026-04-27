@@ -426,22 +426,32 @@ function generarRecurrentes() {
   const hasta = new Date(HOY); hasta.setDate(HOY.getDate() + 60);
 
   const reglas = [
-    { titulo:'CENEMAR', diasSemana:[1], hora:'08:30', horaFin:'15:00', cat:'leo', icono:'🏥', nota:'' },
-    { titulo:'CENEMAR', diasSemana:[2], hora:'08:30', horaFin:'13:30', cat:'leo', icono:'🏥', nota:'' },
-    { titulo:'CENEMAR', diasSemana:[3], hora:'07:00', horaFin:'15:00', cat:'leo', icono:'🏥', nota:'' },
-    { titulo:'CENEMAR', diasSemana:[4], hora:'08:30', horaFin:'13:30', cat:'leo', icono:'🏥', nota:'' },
-    { titulo:'CENEMAR', diasSemana:[5], hora:'08:30', horaFin:'15:00', cat:'leo', icono:'🏥', nota:'' },
-    { titulo:'Gimnasio', diasSemana:[1], hora:'15:00', horaFin:'16:30', cat:'leo', icono:'💪', nota:'' },
-    { titulo:'Gimnasio', diasSemana:[2], hora:'14:00', horaFin:'15:30', cat:'leo', icono:'💪', nota:'' },
-    { titulo:'Gimnasio', diasSemana:[4], hora:'14:00', horaFin:'15:30', cat:'leo', icono:'💪', nota:'' },
-    { titulo:'Gimnasio', diasSemana:[5], hora:'15:00', horaFin:'16:30', cat:'leo', icono:'💪', nota:'' },
-    { titulo:'Jardín Noah', diasSemana:[1,2,3], hora:'08:00', horaFin:'12:15', cat:'noah', icono:'🧒', nota:'' },
-    { titulo:'Jardín Noah', diasSemana:[4],     hora:'08:00', horaFin:'16:00', cat:'noah', icono:'🧒', nota:'' },
-    { titulo:'Jardín Noah', diasSemana:[5],     hora:'08:00', horaFin:'15:15', cat:'noah', icono:'🧒', nota:'' },
-    { titulo:'Tenis Noah',    diasSemana:[6], hora:'12:00', horaFin:'13:00', cat:'noah', icono:'🎾', nota:'' },
-    { titulo:'SUIM (tenuá)',  diasSemana:[6], hora:'15:00', horaFin:'18:00', cat:'noah', icono:'✡️', nota:'' },
+    // LEO – CENEMAR
+    { titulo:'CENEMAR', diasSemana:[1],   hora:'08:00', horaFin:'15:00', cat:'leo', icono:'🏥', nota:'' },
+    { titulo:'CENEMAR', diasSemana:[2],   hora:'10:00', horaFin:'15:00', cat:'leo', icono:'🏥', nota:'' },
+    { titulo:'CENEMAR', diasSemana:[3],   hora:'10:00', horaFin:'15:30', cat:'leo', icono:'🏥', nota:'' },
+    { titulo:'CENEMAR', diasSemana:[4],   hora:'08:00', horaFin:'13:00', cat:'leo', icono:'🏥', nota:'' },
+    { titulo:'CENEMAR', diasSemana:[5],   hora:'10:00', horaFin:'15:30', cat:'leo', icono:'🏥', nota:'' },
+    // LEO – GIMNASIO
+    { titulo:'Gimnasio', diasSemana:[2],  hora:'08:00', horaFin:'09:30', cat:'leo', icono:'💪', nota:'' },
+    { titulo:'Gimnasio', diasSemana:[3],  hora:'08:00', horaFin:'09:30', cat:'leo', icono:'💪', nota:'' },
+    { titulo:'Gimnasio', diasSemana:[5],  hora:'08:00', horaFin:'09:30', cat:'leo', icono:'💪', nota:'' },
+    { titulo:'Gimnasio', diasSemana:[6],  hora:'15:00', horaFin:'',      cat:'leo', icono:'💪', nota:'' },
+    // NOAH – JARDÍN
+    { titulo:'Jardín Noah', diasSemana:[1,2], hora:'08:00', horaFin:'12:15', cat:'noah', icono:'🧒', nota:'' },
+    { titulo:'Jardín Noah', diasSemana:[3,5], hora:'08:00', horaFin:'15:30', cat:'noah', icono:'🧒', nota:'' },
+    { titulo:'Jardín Noah', diasSemana:[4],   hora:'08:00', horaFin:'16:00', cat:'noah', icono:'🧒', nota:'' },
+    // NOAH – TENIS
+    { titulo:'Tenis Noah',   diasSemana:[6], hora:'12:00', horaFin:'',      cat:'noah', icono:'🎾', nota:'' },
+    // NOAH – TERAPIA
+    { titulo:'Terapia Noah', diasSemana:[3], hora:'19:00', horaFin:'',      cat:'noah', icono:'🧠', nota:'' },
+    // NOAH – SUIM
+    { titulo:'SUIM (tenuá)', diasSemana:[6], hora:'15:00', horaFin:'18:00', cat:'noah', icono:'✡️', nota:'' },
+    // DAYU – TRABAJO
     { titulo:'Trabajo Dayu', diasSemana:[1,2,3], hora:'08:30', horaFin:'16:00', cat:'dayu', icono:'💼', nota:'Pausa 12:15–13:30 (busca a Noah)', desde: new Date(2026,3,1) },
     { titulo:'Trabajo Dayu', diasSemana:[4,5],   hora:'08:30', horaFin:'16:00', cat:'dayu', icono:'💼', nota:'', desde: new Date(2026,3,1) },
+    // DAYU – ORQUESTA IDRA
+    { titulo:'Orquesta Idra', diasSemana:[2], hora:'18:00', horaFin:'', cat:'dayu', icono:'🎵', nota:'' },
   ];
 
   const cur = new Date(desde);
